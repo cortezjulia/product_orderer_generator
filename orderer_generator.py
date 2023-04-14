@@ -1,11 +1,11 @@
-# copy, sorted, produtos.sort
-# Exercícios
-# Aumente os preços dos produtos a seguir em 10%
-# Gere novos_produtos por deep copy (cópia profunda)
-# Ordene os produtos por nome decrescente (do maior para menor)
-# Gere produtos_ordenados_por_nome por deep copy (cópia profunda)
-# Ordene os produtos por preco crescente (do menor para maior)
-# Gere produtos_ordenados_por_preco por deep copy (cópia profunda)
+# Exercises
+
+# Increase the prices of the following products by 10%
+# Generate new_products by deep copy (deep copy)
+# Sort the products by descending name (from highest to lowest)
+# Generate products_ordered_by_name by deep copy
+# Sort products by increasing price (from lowest to highest)
+# Generate products_ordered_by_price by deep copy
 
 
 import copy 
@@ -19,12 +19,7 @@ products= [
 ]
 
 
-
-def show_list(show_products):
-    for item in show_products:
-        print(item)
-
-#show_list(products)
+#step 1 - 10% increment
 
 new_products_1=copy.deepcopy(products)
 
@@ -36,24 +31,39 @@ for index, new_item in enumerate(new_products_1):
         try:
             value=float(value)
             value=value+(value/10)
-            new_item.update({key:value})
+            new_item.update({key:round(value,4)})
             
         except:
             value=value
 
-for index, new_item in enumerate(new_products_1):
-    for key,value in new_item.items():
-        print(f'{key} - {value}')
+#for index, new_item in enumerate(new_products_1):
+ #   for key,value in new_item.items():
+  #      print(f'{key} - {value}')
     
+#step 2 - Sort the products by descending name (from highest to lowest)
 
 new_products_2=copy.deepcopy(new_products_1)
 
-new_products_2 = sorted(new_products_2, key=lambda item: item['nome'])
+new_products_2 = sorted(new_products_2, key=lambda item: item['nome'], reverse=True)
 
-print(new_products_2)
 
+
+#step 3 - Sort products by increasing price (from lowest to highest)
 
 new_products_3=copy.deepcopy(new_products_2)
 new_products_3 = sorted(new_products_2, key=lambda item: item['preco'])
 
-print(new_products_3)
+
+
+print('Original List:',end='\n')
+for item in products:
+    print(item)
+print('10% Increment List:',end='\n')
+for item in new_products_1:
+    print(item)
+print('Sort by Name:',end='\n')
+for item in new_products_2:
+    print(item)
+print('Sort by Price:',end='\n')
+for item in new_products_3:
+    print(item)
